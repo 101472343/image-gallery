@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Project #2 - Device Development 1.0</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Image Gallery</h2>
+  <h3>Tuck / Julalaxsananukul</h3>
+  <h4>Image {{ thumbnails.indexOf(mainImage) + 1 }} / {{ thumbnails.length }}</h4>
+  <div class="row">
+    <div class="col-md-1" *ngIf="!isFirstImage()">
+      <div class="pull-right" (click)="goBack()"> < Go Back</div>
+    </div>
+      <div class="col-md-10">
+      <div class="thumbnail">
+
+        <img src="{{ mainImage }}" class="img-thumbnail" alt="Lights" style="width:100%; height:360px;">
+          <div class="caption">
+            <p>{{ getCaption(mainImage) }}</p>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-1" *ngIf="!isLastImage()" (click)="goForward()">Go Forward ></div>
+  </div>
+</div>
+  <div class="row">
+  <div class="col-md-1"></div>
+        <div class="col-md-10">
+
+          <div class="row">
+            <div class="col-md-1"></div>
+            <div *ngFor="let thumbnail of thumbnails" class="col-md-1">
+              <img src="{{ thumbnail }}" class="img-thumbnail" alt="Lights" style="width:100%; height:90px;" (click)="setMainImage(thumbnail)" [ngClass]="{ 'active-thumbnail': thumbnail === mainImage }">
+              </div>
+              <div class="col-md-1"></div>
+          </div>
+        </div>
+  <div class="col-md-1"></div>
+  </div>
+</body>
+</html>
+
+
